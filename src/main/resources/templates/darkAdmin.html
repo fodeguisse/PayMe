@@ -1,0 +1,45 @@
+<div th:insert="menu">
+
+</div>
+
+
+
+
+DARK ADMIN PROFIL
+<div>
+    <h2>Thief</h2>
+    <strong><label>Name : </label></strong><p th:text = "${thief.name}"></p>
+    <strong><label>Balance : </label></strong><p th:text = "${thief.balance}"></p>
+    <strong><label>Stolen Sum : </label></strong><p th:text = "${thief.getStolenSum()}"></p>
+</div>
+
+
+<h2>LISTE DES PROIES</h2>
+<table >
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Balance</th>
+            <th>Number Stealing</th>
+            <th>Missing Sum</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="prey: ${preys}" th:name="prey">
+            <td th:text="${prey.name}"></td>
+            <td th:text="${prey.balance}"></td>
+            <td th:text="${prey.getNumberStealing()}"></td>
+            <td th:text="${prey.getMissingSum()}"></td>
+        </tr>
+    </tbody>
+</table>
+<h2>Bank Robbery</h2>
+<div>
+    <form th:action="@{/darkadmin}" method="post">
+        <select  class="form-control" id="dropDownList" th:name="myprey">
+            <option value="0">prey</option>
+            <option th:each="prey: ${preys}"  th:value="${prey.name}" th:text="${prey.name}"></option>
+        </select>
+        <input type="submit" th:value="Steal">
+    </form>
+</div>
